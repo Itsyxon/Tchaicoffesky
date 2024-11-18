@@ -10,7 +10,11 @@ type Props = {
 
 const Modal: React.FC<Props> = ({ modalData, setModalIsOpen, modalIsOpen }) => {
 
-    modalIsOpen ? document.body.style.overflowY = 'hidden' : document.body.style.overflowY = 'auto'
+    if (modalIsOpen) {
+        document.body.style.overflowY = 'hidden'
+    } else {
+        document.body.style.overflowY = 'auto'
+    }
 
     const scrollY = useMemo(() => {
         return window.scrollY
