@@ -18,7 +18,7 @@ const MenuPage = () => {
                             <Image src={item.image} width="0"
                                 height="0"
                                 sizes="100vw"
-                                className="w-full h-auto" alt={`item ${item.name}`} />
+                                className="w-full h-auto" alt={`item ${item.name}`} loading='lazy' />
                             <div className='border border-gray-200 w-full p-5 flex items-center flex-col gap-3 relative'>
                                 <div className='text-2xl'>{item.name}</div>
                                 <div className='text-xl'>{item.price}₽</div>
