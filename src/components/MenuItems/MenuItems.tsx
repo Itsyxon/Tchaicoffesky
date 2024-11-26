@@ -18,7 +18,7 @@ const MenuItems: React.FC<Props> = ({ modalIsOpen, setModalIsOpen, modalData, se
                     <Image src={item.image} width="0"
                         height="0"
                         sizes="100vw"
-                        className="w-full h-auto" alt={`item ${item.name}`} loading='lazy' />
+                        className="w-full h-auto" alt={`item ${item.name}`} priority />
                     <div className='border border-gray-200 w-full p-5 flex items-center flex-col gap-3 relative'>
                         <div className='text-2xl'>{item.name}</div>
                         <div className='text-xl'>{item.price}₽</div>
