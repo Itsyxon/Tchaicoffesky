@@ -24,14 +24,14 @@ const Modal: React.FC<Props> = ({ modalData, setModalIsOpen, modalIsOpen }) => {
         <div onClick={() => {
             setModalIsOpen(false)
             document.body.style.overflowY = 'auto'
-        }} className={`absolute w-full h-full bg-shadow left-0`} style={{ top: `${scrollY}px` }}>
-            <div onClick={(e) => e.stopPropagation()} className={`w-8/12 h-fit p-10 relative left-80 z-30 top-44 bg-white`}>
+        }} className={`absolute w-full h-full bg-shadow left-0 z-20 p-3`} style={{ top: `${scrollY}px` }}>
+            <div onClick={(e) => e.stopPropagation()} className={`w-full top-12 lg:w-8/12 h-fit p-10 relative lg:left-80 z-30 lg:top-44 bg-white`}>
                 <div onClick={() => {
                     setModalIsOpen(false)
                     document.body.style.overflowY = 'auto'
                 }} className='font-bold cursor-pointer absolute right-5 top-3 text-2xl'>✖</div>
-                <div className='flex justify-between items-center gap-4'>
-                    <Image src={modalData!.image} width={500} height={500} alt={modalData!.name} className='object-contain' />
+                <div className='flex flex-col items-center gap-4 lg:flex-row lg:justify-between'>
+                    <Image src={modalData!.image} width={500} height={500} sizes='' alt={modalData!.name} className='object-contain' />
                     <div className='flex-1'>
                         <div className='text-3xl mb-4'>{modalData?.name}</div>
                         <div className='text-lg'>{modalData?.description}</div>

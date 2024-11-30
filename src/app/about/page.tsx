@@ -2,7 +2,7 @@ import React from 'react';
 
 const AboutPage = () => {
     return (
-        <main className='bg-white h-[48.5rem]'>
+        <main className='bg-white md:h-[48.5rem]'>
             <h1 className="text-4xl text-center">О нас</h1>
             <section className='p-16'>
                 <p className='leading-8'>Наша кофейня - это место, где каждый посетитель может насладиться ароматным кофе и уютной атмосферой. Мы гордимся своими знаниями и опытом в области кофейного дела, и всегда рады поделиться ими с нашими клиентами. </p>

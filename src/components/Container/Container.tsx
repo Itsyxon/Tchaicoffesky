@@ -6,7 +6,7 @@ export default function Container({
     children: React.ReactNode;
 }>) {
     return (
-        <div className='container mx-auto px-20'>
+        <div className='xl:container xl:mx-auto xl:px-20'>
             {children}
         </div>
     );
