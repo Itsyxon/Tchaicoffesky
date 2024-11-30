@@ -18,7 +18,7 @@ const data: IData[] = [
   {
     id: 2,
     name: 'Капучино',
-    image: '/t2.jpeg',
+    image: '/t2.jpg',
     description:
       'Кофейный напиток итальянской кухни на основе эспрессо с добавлением в него подогретого до 65 градусов вспененного молока.',
     price: 250,
@@ -50,7 +50,7 @@ const data: IData[] = [
   {
     id: 6,
     name: 'Чёрный чай',
-    image: '/t6.jpeg',
+    image: '/t6.jpg',
     description: 'Классический чёрный чай.',
     price: 100,
   },
