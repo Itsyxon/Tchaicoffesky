@@ -3,6 +3,7 @@ import Container from "../components/Container/Container";
 import Header from "../components/Header/Header";
 import "./globals.css";
 import Footer from "@/components/Footer/Footer";
+import { ModalProvider } from "@/context/ModalContext";
 
 
 export const metadata: Metadata = {
@@ -19,11 +20,13 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <body className="bg-main">
-        <Container>
-          <Header />
-          {children}
-          <Footer />
-        </Container>
+        <ModalProvider>
+          <Container>
+            <Header />
+            {children}
+            <Footer />
+          </Container>
+        </ModalProvider>
       </body>
     </html>
   );
