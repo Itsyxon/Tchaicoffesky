@@ -1,38 +1,51 @@
-'use client'
-import React from 'react';
-import data from '../../data/items';
-import Image from 'next/image';
-import CoffeeInfoModal from '../../components/Modals/CoffeeInfoModal'
-import { useModal } from '@/context/ModalContext';
+import { headers } from 'next/headers'
+import React from 'react'
+import MenuBrowser from '@/components/Menu/MenuBrowser'
+import { Product } from '@/data/products'
+import { getProducts } from '@/lib/products'
 
-const MenuPage = () => {
-    const { openModal } = useModal()
-    return (
-        <main className="bg-white">
-            <section>
-                <h1 className="text-4xl text-center">Наше меню</h1>
-                <div>
-                    <div className='p-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-10 lg:p-16'>
-                        {data.map((item) => (
-                            <div key={item.id} className='flex flex-col justify-center items-center text-center transition hover:shadow-lg max-h-[500px]'>
-                                <Image src={item.image} width="0"
-                                    height="0"
-                                    sizes="500px"
-                                    className="w-full h-[250px]" alt={`item ${item.name}`} priority />
-                                <div className='border border-gray-200 w-full p-5 flex items-center flex-col gap-3 relative'>
-                                    <div className='text-2xl'>{item.name}</div>
-                                    <div className='text-xl'>{item.price}₽</div>
-                                    <button onClick={() => {
-                                        openModal(<CoffeeInfoModal modalData={item} />)
-                                    }} className='p-2 border-white border-2 transition bg-orange-500 rounded text-white'>Подробнее</button>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-        </main>
-    );
-};
+export const metadata = {
+  title: 'Меню',
+  description:
+    'Кофе и чай в кофейне «ЧайКофский»: эспрессо, капучино, флэт уайт, латте, моккачино и листовой чай с ценами.',
+}
 
-export default MenuPage;
+async function loadProducts(): Promise<Product[]> {
+  const headerList = await headers()
+  const host = headerList.get('host')
+  const protocol = headerList.get('x-forwarded-proto') ?? 'http'
+
+  try {
+    const response = await fetch(`${protocol}://${host}/api/products`, {
+      cache: 'no-store',
+    })
+
+    if (!response.ok) throw new Error('Меню недоступно')
+
+    const data = (await response.json()) as { items: Product[] }
+    return data.items
+  } catch {
+    return getProducts().items
+  }
+}
+
+export default async function MenuPage() {
+  const items = await loadProducts()
+
+  return (
+    <main className="section py-16 sm:py-20">
+      <header className="max-w-prose">
+        <h1 className="heading text-[clamp(2rem,5vw,3.25rem)] leading-tight">Меню</h1>
+        <p className="mt-4 text-[15px] leading-relaxed text-muted">
+          Пять кофейных напитков, два чая и еда к ним. Молоко меняем на овсяное или
+          безлактозное бесплатно, сиропы — на выбор. Нажмите на позицию, чтобы прочитать
+          состав и вкусовые ноты.
+        </p>
+      </header>
+
+      <div className="mt-10">
+        <MenuBrowser initialItems={items} />
+      </div>
+    </main>
+  )
+}

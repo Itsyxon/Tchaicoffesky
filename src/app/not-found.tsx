@@ -1,23 +1,33 @@
-'use client'
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import React from 'react';
+import Image from 'next/image'
+import Link from 'next/link'
+import React from 'react'
 
-const NotFoundPage = () => {
+export const metadata = {
+  title: 'Страница не найдена',
+}
 
-    const router = useRouter()
+export default function NotFoundPage() {
+  return (
+    <main className="section flex min-h-[60vh] flex-col items-start justify-center py-20">
+      <Image src="/coffee.svg" width={48} height={48} alt="" className="opacity-70" />
 
-    const goToMainHandler = () => {
-        router.push('/')
-    }
+      <h1 className="heading mt-6 text-[clamp(2rem,5vw,3rem)] leading-tight">
+        Такой страницы у нас нет
+      </h1>
 
-    return (
-        <div className='bg-white h-[48.5rem] flex items-center justify-center flex-col'>
-            <h1 className="text-3xl text-center">Упс. Страница не найдена</h1>
-            <Image src={'/coffee.svg'} width={50} height={50} alt='coffee' />
-            <button onClick={goToMainHandler} className="p-2 border-2 border-black text-black">Вернуться на главную</button>
-        </div>
-    );
-};
+      <p className="mt-4 max-w-prose text-[15px] leading-relaxed text-muted">
+        Возможно, ссылка устарела или в адресе опечатка. Меню и контакты на месте — начните
+        с них.
+      </p>
 
-export default NotFoundPage;
+      <div className="mt-8 flex flex-wrap gap-3">
+        <Link href="/menu" className="btn-primary">
+          Открыть меню
+        </Link>
+        <Link href="/" className="btn-ghost">
+          На главную
+        </Link>
+      </div>
+    </main>
+  )
+}

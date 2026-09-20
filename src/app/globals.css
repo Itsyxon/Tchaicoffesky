@@ -1,45 +1,66 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Unbounded:wght@200..900&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #fffff0;
-  --foreground: #171717;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: theme('colors.paper');
+    color: theme('colors.ink');
+    font-family: theme('fontFamily.sans');
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :focus-visible {
+    outline: 2px solid theme('colors.brass');
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: theme('colors.crema');
+    color: theme('colors.ink');
+  }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Montserrat, Arial, Helvetica, sans-serif;
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-colors;
+  }
+
+  .btn-primary {
+    @apply btn bg-ink text-paper hover:bg-brass;
+  }
+
+  .btn-ghost {
+    @apply btn border border-line text-ink hover:border-ink;
+  }
+
+  .btn-light {
+    @apply btn border border-paper/40 text-paper hover:border-paper hover:bg-paper/10;
+  }
+
+  .section {
+    @apply mx-auto w-full max-w-page px-5 sm:px-8;
+  }
+
+  .heading {
+    @apply font-display font-medium tracking-tight;
+  }
 }
 
-body:has(.modal-overlay) {
-  overflow-y: hidden;
-}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
-  background-color: white;
-  padding: 24px;
-  border-radius: 5px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  min-width: 400px;
-  max-width: 900px;
-  min-height: 400px;
-  color: #111113;
-  opacity: 1;
-  transition: opacity 4s ease-in;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

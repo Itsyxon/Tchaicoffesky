@@ -1,21 +1,40 @@
 import type { Config } from 'tailwindcss'
 
 export default {
-  content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
+  content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
     extend: {
       colors: {
-        background: 'var(--background)',
-        foreground: 'var(--foreground)',
-        main: '#36291d',
-        shadow: '#00000042',
+        ink: '#1E1512',
+        paper: '#FFFFFF',
+        marble: '#ECEDEA',
+        crema: '#E7C79C',
+        brass: '#96702A',
+        leaf: '#2F5D4C',
+        muted: '#6B625C',
+        line: '#DFDEDA',
       },
       fontFamily: {
-        title: ['Montserrat', 'sans-serif'],
+        display: ['var(--font-display)', 'Georgia', 'serif'],
+        sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
+      },
+      maxWidth: {
+        page: '76rem',
+        prose: '38rem',
+      },
+      keyframes: {
+        'modal-in': {
+          from: { opacity: '0', transform: 'translateY(12px) scale(0.99)' },
+          to: { opacity: '1', transform: 'none' },
+        },
+        'overlay-in': {
+          from: { opacity: '0' },
+          to: { opacity: '1' },
+        },
+      },
+      animation: {
+        'modal-in': 'modal-in 0.22s cubic-bezier(0.2, 0.7, 0.2, 1)',
+        'overlay-in': 'overlay-in 0.18s ease-out',
       },
     },
   },
